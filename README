@@ -1,0 +1,75 @@
+Daniela Elena Ene
+326CC
+
+Proiectarea algoritmilor
+Tema 1
+
+Problema 1
+
+	Citirea din fisier se face in functia readData(String) folosind
+BufferedReader. De pe prima linie se citeste numarul de cuvinte, 
+dar cuvintele se citesc intr-un vector de stringuri care se 
+returneaza din functie.
+	Pentru fiecare element din vectorul de stringuri se aplica urmatorul
+algoritm:
+	Functia check(char[]) verifica daca un cuvant poate fi palindrom.
+	Un cuvant poate fi palindrom daca are cel mult o litera cu un
+numar impar de aparitii in cuvant. Pentru a verifica aceasta 
+conditie, se construieste un vector de aparitii. Consideram pozitia
+0 pentru 'a', 1 pentru 'b' etc. Pentru a accesa pozitiile se
+folosesc codificarile ASCII ale literelor minus codificarea pentru 
+'a'. Dupa ce se completeaza vectorul, se numara cate litere au un 
+numar impar de aparitii. Daca numarul este mai mic decat 2, se 
+returneaza true.
+	In functia solve(char[]) se verifica daca cuvantul poate fi
+palindrom. Daca nu, se returneaza -1, daca da, se parcurge vectorul
+de litere din ambele sensuri, iar daca literele difera se apeleaza
+functia movesNumber().
+	Functia movesNumber() calculeaza cate interschimbari trebuie 
+facute pentru a aduce corespondentul primei si ultimului caracter
+pe ultima respectiv prima pozitie. Daca prima respectiv ultima pozitie
+nu au un caracter corespondent in cealalta jumatate, inseamna
+ca incercam ca gasim pereche pentru litera cu un numar impar de
+aparitii. In aceasta situatie, indiferent de cost, se va considera
+litera care are pereche. Daca ambele capete, au pereche, se va considera
+litera al carei cost este mai mic.
+	Functia costForFirst(char[], int, int) calculeaza numarul de inversiuni
+necesare pentru a aduce pe prima pozitie perechea caracterului de pe
+ultima pozitie. Se construieste un string din vectorul de caractere 
+si functia String.indexOf(char) pentru a gasi distanta de la inceputul
+stringului pana la litera cautata.
+	Functia costForLast(char[], int, int) calculeaza numarul de inversiuni
+necesare pentru a aduce pe ultima pozitie perechea caracterului de pe
+prima pozitie. Se construieste un string din vectorul de caractere, se
+inverseaza stringul si se foloseste String.indexOf.
+	Functiile move_first si move_last shifteaza litera de pe o 
+pozitie data ca parametru pe prima respectiv ultima pozitie si intoarce
+numarul de litere care au trebuit mutate pentru a pozitiona corect caracterul.
+	In final, se aduna toate aceste interschimabri pentru fiecare pereche de 
+caractere si se scrie in fisier.
+
+Problema 2
+
+	Citirea din fisier se face in functia readData(String) folosind BufferedReader. 
+De pe prima linie de citesc numarul de variante si dimensiunea unei variante care
+vor reprezenta numarul de linii si de coloane ale matricei de variante. Matricea 
+se completeaza citind linie cu linie fisierul, se foloseste String.split(" ") si
+Integer.parseInt(String) pentru a obtine fiecare rand din matrice. In mod
+asemanator se citeste si cuvantul initial. Toate aceste date au fost declarate
+ca date statice ale clasei, deoarece ele nu se modifica pe parcursul rezolvarii.
+	Pentru a rezolva problema, in functia compute(), am implementat algoritmul 
+pentru calculul distantei Levenshtein. Am declarat o matrice in care pastrez
+distantele intre prefixele primului string si prefixele celui de-al doilea.
+Distanta dintre stringurile complete se gaseste pe ultima pozitie in matrice.
+In cazul nostru unul din stringuri este reprezentat de cuvantul initial,
+iar celalalt de mai multe stringuri.
+	Functia find (char, int) verifica daca un caracter din cuvantul initial se
+gaseste pe o anumita coloana din matricea de variante.
+	Astfel, daca un caracter se gaseste pe coloana corespunzatoare din matrice, nu
+trebuie aplicata nicio operatie asupra caracterului. Daca nu, aplicam operatia ce
+ne-ar conduce catre un numar minim de operatii. Dupa completarea intregii matrici,
+se scrie in fisier valoarea de pe ultima pozitie, care reprezinta distanta dintre 
+intregul cuvant intitial si variantele complete.
+
+Referinte:
+1. https://en.m.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm	
